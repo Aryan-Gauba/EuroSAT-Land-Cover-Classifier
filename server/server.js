@@ -13,7 +13,8 @@ app.post('/api/predict', (req, res) => {
     }
 
     // NOTE: If your packages are in your root venv, replace 'python' with the absolute path below:
-    const pythonProcess = spawn('../.venv/Scripts/python.exe', ['predict.py', lat, lon]);
+    const pythonCmd = process.platform === 'win32' ? '../.venv/Scripts/python.exe' : 'python3';
+    const pythonProcess = spawn(pythonCmd, ['predict.py', lat, lon]);
     let dataString = '';
     let errorString = '';
 
