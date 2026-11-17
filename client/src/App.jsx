@@ -15,8 +15,8 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// Automatically use the Vercel env variable in production, or localhost for local testing
-const API_URL = import.meta.env.API_URL || 'http://localhost:5000';
+// Automatically uses your live Vercel environment variable or falls back to localhost for local testing
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 // Helper component to center map whenever position changes
 function MapController({ center }) {
