@@ -15,6 +15,9 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
+// Automatically use the Vercel env variable in production, or localhost for local testing
+const API_URL = import.meta.env.API_URL || 'http://localhost:5000';
+
 // Helper component to center map whenever position changes
 function MapController({ center }) {
     const map = useMap();
@@ -44,7 +47,7 @@ function App() {
         setLoading(true);
         setResult(null);
         try {
-            const response = await axios.post('http://localhost:5000/api/predict', {
+            const response = await axios.post(`${API_URL}/api/predict`, {
                 lat: position[0],
                 lon: position[1]
             });
